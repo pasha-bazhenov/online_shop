@@ -56,8 +56,9 @@ class Product:
     quantity: int
     color: str
 
-    def __init__(self, name, description, price, quantity, color):
+    def __init__(self, name, description, price, quantity, color, product_data):
         """Инициализация имени, описания цены и количества"""
+        self.product_data = product_data
         self.name = name
         self.description = description
         self.__price = price
@@ -114,6 +115,10 @@ class Product:
         # нашлось совпадения по имени - значит мы должны создать продукт и вернуть его
         new_product = cls(name, description, price, quantity, color)
         return new_product
+
+    def add_product(self, product_data):
+        if isinstance(product_data, Product):
+            self.product_data.append(product_data)
 
     def __str__(self):
         """ Строковое отображение остатка продукта на складе """
